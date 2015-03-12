@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
+using Huffman.PrintVisitors;
 
 namespace Huffman
 {
@@ -20,24 +22,30 @@ namespace Huffman
                 return;
             }
 
+            //var stopwatch = new Stopwatch();
+            //stopwatch.Start();
 
             Dictionary<byte, ulong> frequencies;
             using (var reader = new Reader(stream))
-            {
+            { // Read frequencies from file
                 frequencies = reader.ReadFileByteFrequencies();
             }
+
+            // Get root node from tree
             var root = new HuffmanTree(frequencies).Root;
 
-                //var writer = new Writer(new StreamWriter("D:\\out.out"));
-            using (var writer = new Writer(Console.Out))
+            // Print tree
+            //using (var visitor = new PrintVisitor(new StreamWriter("D:\\out.out")))
+            using (var visitor = new PrintVisitor(Console.Out))
             {
-                writer.WriteTree(root, new List<Indent>());
+                root.Accept(visitor);
+                //Console.Write("\n");
             }
-            //var writer = new Writer(Console.Out);
-            //    writer.WriteTree(root, new List<Indent>());
-            //    writer.Dispose();
 
-                //Console.ReadLine();
+            //stopwatch.Stop();
+            //Console.Write("Minutes :{0}\nSeconds :{1}\n Mili seconds :{2}", stopwatch.Elapsed.Minutes,
+            //    stopwatch.Elapsed.Seconds, stopwatch.Elapsed.TotalMilliseconds);
+            //Console.ReadLine();
         }
 
         private static bool ChechParameters(string[] parameters)

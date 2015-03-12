@@ -1,4 +1,6 @@
-﻿namespace Huffman
+﻿using Huffman.PrintVisitors;
+
+namespace Huffman
 {
     public class BranchNode : Node
     {
@@ -43,9 +45,14 @@
             return Sum.ToString();
         }
 
+        public override void Accept(IVisitor v)
+        {
+            v.Visit(this);
+        }
+
         protected override int Compare(Node other)
         {
-            return Order < ((BranchNode)other).Order ? -1 : 1;
+            return Order - ((BranchNode)other).Order;
         }
     }
 }

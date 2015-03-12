@@ -1,4 +1,6 @@
-﻿namespace Huffman
+﻿using Huffman.PrintVisitors;
+
+namespace Huffman
 {
     public class LeafNode : Node
     {
@@ -29,10 +31,15 @@
             return string.Format(" [{0}:{1}]", Symbol, Sum);
         }
 
+        public override void Accept(IVisitor v)
+        {
+            v.Visit(this);
+        }
+
 
         protected override int Compare(Node other)
         {
-            return Symbol < ((LeafNode)other).Symbol ? -1 : 1;
+            return Symbol - ((LeafNode)other).Symbol;
         }
         
 

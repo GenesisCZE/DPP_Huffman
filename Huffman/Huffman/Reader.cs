@@ -20,7 +20,7 @@ namespace Huffman
         /// <summary>
         /// Read bytes from <see cref="_reader"/> using buffer.
         /// </summary>
-        /// <returns></returns>
+        /// <returns><see cref="Dictionary{TKey,TValue}"/> where TKey is readed symbol and TValue is count of that symbol</returns>
         public Dictionary<byte, ulong> ReadFileByteFrequencies()
         {
             SetReaderToStart();
@@ -55,7 +55,7 @@ namespace Huffman
             _reader.BaseStream.Position = 0;
         }
 
-        public void Dispose()
+        void IDisposable.Dispose()
         {
             _reader.Close();
             _reader.Dispose();

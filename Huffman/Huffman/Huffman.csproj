@@ -43,12 +43,15 @@
   <ItemGroup>
     <Compile Include="BranchNode.cs" />
     <Compile Include="HuffmanTree.cs" />
+    <Compile Include="Indent.cs" />
     <Compile Include="LeafNode.cs" />
     <Compile Include="Node.cs" />
+    <Compile Include="PrintVisitors\IVisitedNode.cs" />
+    <Compile Include="PrintVisitors\IVisitor.cs" />
+    <Compile Include="PrintVisitors\PrintVisitor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reader.cs" />
-    <Compile Include="Writer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

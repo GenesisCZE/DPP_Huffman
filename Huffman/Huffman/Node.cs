@@ -1,8 +1,9 @@
 ﻿using System;
+using Huffman.PrintVisitors;
 
 namespace Huffman
 {
-    public abstract class Node : IComparable<Node>
+    public abstract class Node : IComparable<Node>, IVisitedNode
     {
         private readonly ulong _sum;
 
@@ -36,6 +37,7 @@ namespace Huffman
             // One is leaf
             return IsLeaf ? -1 : 1;
         }
+        public abstract void Accept(IVisitor v);
 
 
         protected abstract int Compare(Node other);
