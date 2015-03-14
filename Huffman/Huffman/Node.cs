@@ -22,7 +22,7 @@ namespace Huffman
         public abstract bool IsLeaf { get; }
 
 
-        public int CompareTo(Node other)
+        int IComparable<Node>.CompareTo(Node other)
         {
             //By sum
             if (Sum < other.Sum)
