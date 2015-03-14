@@ -44,9 +44,7 @@ namespace Huffman
                 var secondMinNode = RemoveMinNode();
 
                 // Create new BranchNode
-                var branchNode = minNode.CompareTo(secondMinNode) < 0
-                    ? new BranchNode(minNode, secondMinNode, _order++)
-                    : new BranchNode(secondMinNode, minNode, _order++);
+                var branchNode = new BranchNode(minNode, secondMinNode, _order++);
                 
                 // Add new node to Dictionary
                 if (_nodes.ContainsKey(branchNode.Sum))

@@ -26,9 +26,9 @@ namespace Huffman
 
         public override string ToString()
         {
-            if (IsPrintableCharacter(Symbol))
-                return string.Format(" ['{0}':{1}]", (char)Symbol, Sum);
-            return string.Format(" [{0}:{1}]", Symbol, Sum);
+            return IsPrintableCharacter(Symbol)
+                ? string.Format(" ['{0}':{1}]", (char) Symbol, Sum)
+                : string.Format(" [{0}:{1}]", Symbol, Sum);
         }
 
         public override void Accept(IVisitor v)

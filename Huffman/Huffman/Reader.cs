@@ -28,7 +28,8 @@ namespace Huffman
             var frequencies = new Dictionary<byte, ulong>();
             while (_reader.BaseStream.Position != _reader.BaseStream.Length)
             {
-                var difference = _reader.BaseStream.Length - _reader.BaseStream.Position;
+                var difference =
+                    _reader.BaseStream.Length - _reader.BaseStream.Position;
                 var bufferSize = difference < MaxBufferSize 
                                     ? (int)difference 
                                     : MaxBufferSize;
