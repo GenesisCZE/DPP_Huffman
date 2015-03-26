@@ -41,7 +41,7 @@ namespace Huffman.PrintVisitors
         public void Visit(BranchNode node)
         {
             _writer.Write("{0,4} -+- ", node);
-            
+
             // First indent is SpaceSix, otherwise SpaceEight
             Add(_indents.Any() ? Indent.SpaceEight : Indent.SpaceSix);
 
@@ -353,12 +353,12 @@ namespace Huffman
 
                 // Create new BranchNode
                 var node = new BranchNode(minNode, secondMinNode, _order++);
-                
+
                 // Add new node to Dictionary
                 if (_nodes.ContainsKey(node.Sum))
                     _nodes[node.Sum].Add(node);
                 else
-                    _nodes.Add(node.Sum, new List<Node> {node});
+                    _nodes.Add(node.Sum, new List<Node> { node });
                 count--;
             }
 
@@ -412,8 +412,8 @@ namespace Huffman
             {
                 var difference =
                     _reader.BaseStream.Length - _reader.BaseStream.Position;
-                var bufferSize = difference < MaxBufferSize 
-                                    ? (int)difference 
+                var bufferSize = difference < MaxBufferSize
+                                    ? (int)difference
                                     : MaxBufferSize;
                 var buffer = _reader.ReadBytes(bufferSize);
 
@@ -449,7 +449,7 @@ namespace Huffman
     {
         static void Main(string[] args)
         {
-            if (!ChechParameters(args))
+            if (!CheckParameters(args))
             {
                 Console.WriteLine("Argument Error");
                 return;
@@ -470,6 +470,9 @@ namespace Huffman
                 frequencies = reader.ReadFileByteFrequencies();
             }
 
+            // empty file
+            if (!frequencies.Any())
+                return;
             // Get root node from tree
             var root = new HuffmanTree(frequencies).Root;
 
@@ -483,13 +486,13 @@ namespace Huffman
             }
 
             stopwatch.Stop();
-            Console.Write("Minutes :{0}\nSeconds :{1}\n Mili seconds :{2}", 
-                stopwatch.Elapsed.Minutes, stopwatch.Elapsed.Seconds, 
+            Console.Write("Minutes :{0}\nSeconds :{1}\n Mili seconds :{2}",
+                stopwatch.Elapsed.Minutes, stopwatch.Elapsed.Seconds,
                 stopwatch.Elapsed.TotalMilliseconds);
             Console.ReadLine();
         }
 
-        private static bool ChechParameters(string[] parameters)
+        private static bool CheckParameters(string[] parameters)
         {
             return parameters.Length == 1;
         }
